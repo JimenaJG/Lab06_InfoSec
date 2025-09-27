@@ -1,7 +1,6 @@
 "use strict";
 
 // Imports
-require('dotenv').config();
 const express = require("express");
 const session = require("express-session");
 const ExpressOIDC = require("@okta/oidc-middleware").ExpressOIDC;
@@ -12,6 +11,7 @@ var path = require('path');
 let app = express();
 
 // Environment variables
+require('dotenv').config();
 const OKTA_ISSUER_URI = process.env.OKTA_ISSUER_URI;
 const OKTA_CLIENT_ID = process.env.OKTA_CLIENT_ID;
 const OKTA_CLIENT_SECRET = process.env.OKTA_CLIENT_SECRET;
@@ -25,8 +25,8 @@ const config = {
   auth0Logout: true,
   secret: SECRET,
   baseURL: process.env.BASE_URL,
-  clientID: 'OyNmtm5vKNb1LKCg9sTxOMeh5gYxWdym',
-  issuerBaseURL: 'https://dev-oy0nv30kjgrtebzj.us.auth0.com'
+  clientID: process.env.OKTA_CLIENT_ID,
+  issuerBaseURL: process.env.OKTA_ISSUER_URI
 };
 
 let oidc = new ExpressOIDC({
