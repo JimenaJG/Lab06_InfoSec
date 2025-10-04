@@ -33,6 +33,7 @@ let oidc = new ExpressOIDC({
   issuer: OKTA_ISSUER_URI,
   client_id: OKTA_CLIENT_ID,
   client_secret: OKTA_CLIENT_SECRET,
+  appBaseUrl: process.env.BASE_URL,  // 👈 AGREGAR ESTA LÍNEA
   redirect_uri: REDIRECT_URI,
   routes: { callback: { defaultRedirect: "http://localhost:3000/dashboard" } },
   scope: 'openid profile'
