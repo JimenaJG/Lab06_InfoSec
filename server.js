@@ -72,8 +72,12 @@ app.get("/dashboard", requiresAuth() ,(req, res) => {
   //}
 });
 
-const openIdClient = require('openid-client');
-openIdClient.Issuer.defaultHttpOptions.timeout = 20000;
+//const openIdClient = require('openid-client');
+//openIdClient.Issuer.defaultHttpOptions.timeout = 20000;
+
+const { Issuer } = require('openid-client');
+Issuer.defaultHttpOptions = { timeout: 20000 };
+
 
 oidc.on("ready", () => {
   console.log("Server running on port: " + PORT);
